@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buffalo Slots - Casino Game</title>
+    <title>Ocean Fortune Slots - Casino Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Animated bubbles background -->
+    <div id="bubbles-container"></div>
+
     <div class="container">
         <!-- Header with game info -->
         <header class="game-header">
             <div class="logo">
-                <h1>🦬 BUFFALO SLOTS</h1>
+                <h1>🌊 OCEAN FORTUNE 🐠</h1>
             </div>
             <div class="balance-info">
                 <div class="balance-display">
@@ -34,8 +37,16 @@
             <!-- Free spins banner -->
             <div class="free-spins-banner" id="free-spins-banner">
                 <div class="free-spins-content">
-                    <h2>🎰 FREE SPINS! 🎰</h2>
+                    <h2>🌊 FREE SPINS! 🌊</h2>
                     <p id="free-spins-count">10 Free Spins Remaining</p>
+                </div>
+            </div>
+
+            <!-- Expanding reels banner -->
+            <div class="expanding-reels-banner" id="expanding-reels-banner">
+                <div class="expanding-reels-content">
+                    <h2>🐙 MEGA REEL BONUS! 🐙</h2>
+                    <p id="expanding-reels-count">Extra Rows & Paylines Active!</p>
                 </div>
             </div>
 
@@ -122,6 +133,11 @@
                         <label>Total Bet:</label>
                         <span class="value" id="total-bet">$0.50</span>
                     </div>
+                    <div class="control-group">
+                        <button class="btn-small" id="max-bet">MAX BET</button>
+                        <button class="btn-small" id="autoplay-toggle">AUTO PLAY</button>
+                        <button class="btn-small" id="turbo-toggle">TURBO: OFF</button>
+                    </div>
                 </div>
 
                 <button class="spin-button" id="spin-button">
@@ -152,17 +168,19 @@
             <h3>Debug Menu</h3>
             <div class="debug-controls">
                 <button class="debug-btn" id="debug-add-balance">Add $1000</button>
-                <button class="debug-btn" id="debug-trigger-bonus">Trigger Bonus</button>
+                <button class="debug-btn" id="debug-trigger-bonus">Trigger Free Spins</button>
+                <button class="debug-btn" id="debug-trigger-expanding">Trigger Mega Reels</button>
                 <button class="debug-btn" id="debug-force-win">Force Big Win</button>
-                <button class="debug-btn" id="debug-force-buffalos">Force 5 Buffalos</button>
+                <button class="debug-btn" id="debug-force-wilds">Force 5 Wilds</button>
                 <button class="debug-btn" id="debug-reset">Reset Game</button>
                 <div class="debug-info">
                     <label>Next Spin Result:</label>
                     <select id="debug-next-spin">
                         <option value="normal">Normal</option>
-                        <option value="bonus">Bonus Round</option>
+                        <option value="bonus">Free Spins</option>
+                        <option value="expanding">Mega Reels</option>
                         <option value="big-win">Big Win</option>
-                        <option value="buffalo-line">Buffalo Line</option>
+                        <option value="wild-line">Wild Line</option>
                         <option value="scatter-win">Scatter Win</option>
                     </select>
                 </div>
@@ -176,15 +194,15 @@
                 <h2>Paytable</h2>
                 <div class="paytable-grid">
                     <div class="paytable-item">
-                        <span class="symbol-display">🦬 🦬 🦬 🦬 🦬</span>
+                        <span class="symbol-display">🐠 🐠 🐠 🐠 🐠</span>
                         <span class="payout">5000x</span>
                     </div>
                     <div class="paytable-item">
-                        <span class="symbol-display">🦬 🦬 🦬 🦬</span>
+                        <span class="symbol-display">🐠 🐠 🐠 🐠</span>
                         <span class="payout">500x</span>
                     </div>
                     <div class="paytable-item">
-                        <span class="symbol-display">🦬 🦬 🦬</span>
+                        <span class="symbol-display">🐠 🐠 🐠</span>
                         <span class="payout">100x</span>
                     </div>
                     <div class="paytable-item">
@@ -200,33 +218,50 @@
                         <span class="payout">50x</span>
                     </div>
                     <div class="paytable-item">
-                        <span class="symbol-display">👑 👑 👑 👑 👑</span>
+                        <span class="symbol-display">🐙 🐙 🐙 🐙 🐙</span>
                         <span class="payout">750x</span>
                     </div>
                     <div class="paytable-item">
-                        <span class="symbol-display">🔔 🔔 🔔 🔔 🔔</span>
+                        <span class="symbol-display">🐚 🐚 🐚 🐚 🐚</span>
                         <span class="payout">500x</span>
                     </div>
                     <div class="paytable-item">
-                        <span class="symbol-display">🍀 🍀 🍀 🍀 🍀</span>
+                        <span class="symbol-display">⭐ ⭐ ⭐ ⭐ ⭐</span>
                         <span class="payout">400x</span>
                     </div>
                     <div class="paytable-item">
-                        <span class="symbol-display">⭐ ⭐ ⭐ ⭐ ⭐</span>
+                        <span class="symbol-display">🦀 🦀 🦀 🦀 🦀</span>
                         <span class="payout">300x</span>
                     </div>
-                    <div class="paytable-item special">
-                        <span class="symbol-display">🎰 🎰 🎰</span>
-                        <span class="payout">BONUS ROUND!</span>
+                    <div class="paytable-item">
+                        <span class="symbol-display">🐟 🐟 🐟 🐟 🐟</span>
+                        <span class="payout">250x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">🦞 🦞 🦞 🦞 🦞</span>
+                        <span class="payout">200x</span>
                     </div>
                     <div class="paytable-item special">
-                        <span class="symbol-display">🎰 = Scatter</span>
+                        <span class="symbol-display">🌊 🌊 🌊</span>
+                        <span class="payout">FREE SPINS!</span>
+                    </div>
+                    <div class="paytable-item special">
+                        <span class="symbol-display">🐡 🐡 🐡</span>
+                        <span class="payout">MEGA REELS!</span>
+                    </div>
+                    <div class="paytable-item special">
+                        <span class="symbol-display">🌊 = Scatter</span>
                         <span class="payout">3+ triggers Free Spins</span>
+                    </div>
+                    <div class="paytable-item special">
+                        <span class="symbol-display">🐡 = Bonus</span>
+                        <span class="payout">3+ triggers Mega Reels</span>
                     </div>
                 </div>
                 <div class="paytable-info">
-                    <p><strong>Free Spins:</strong> 3+ Scatter symbols trigger 10 free spins with 2x multiplier!</p>
-                    <p><strong>Buffalo:</strong> Wild symbol, substitutes for all except Scatter</p>
+                    <p><strong>Free Spins:</strong> 3+ Wave symbols trigger 10 free spins with 2x multiplier!</p>
+                    <p><strong>Mega Reels Bonus:</strong> 3+ Pufferfish symbols add extra rows and paylines!</p>
+                    <p><strong>Tropical Fish:</strong> Wild symbol, substitutes for all except Scatter</p>
                     <p><strong>Max Lines:</strong> Up to 2000 paylines available</p>
                 </div>
             </div>
