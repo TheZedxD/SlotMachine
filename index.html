@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buffalo Slots - Casino Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header with game info -->
+        <header class="game-header">
+            <div class="logo">
+                <h1>🦬 BUFFALO SLOTS</h1>
+            </div>
+            <div class="balance-info">
+                <div class="balance-display">
+                    <span class="label">Balance:</span>
+                    <span class="amount" id="balance">$100.00</span>
+                </div>
+                <div class="daily-bonus-info">
+                    <span id="daily-bonus-status">Daily Bonus Available!</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main game area -->
+        <div class="game-container">
+            <!-- Win display -->
+            <div class="win-display" id="win-display">
+                <div class="win-amount" id="win-amount"></div>
+            </div>
+
+            <!-- Free spins banner -->
+            <div class="free-spins-banner" id="free-spins-banner">
+                <div class="free-spins-content">
+                    <h2>🎰 FREE SPINS! 🎰</h2>
+                    <p id="free-spins-count">10 Free Spins Remaining</p>
+                </div>
+            </div>
+
+            <!-- Slot machine reels -->
+            <div class="slot-machine">
+                <div class="paylines-overlay" id="paylines-overlay"></div>
+
+                <div class="reels-container">
+                    <div class="reel" id="reel-0">
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                    </div>
+                    <div class="reel" id="reel-1">
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                    </div>
+                    <div class="reel" id="reel-2">
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                    </div>
+                    <div class="reel" id="reel-3">
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                    </div>
+                    <div class="reel" id="reel-4">
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                        <div class="symbol-container">
+                            <div class="symbol">🦬</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control panel -->
+            <div class="control-panel">
+                <div class="bet-controls">
+                    <div class="control-group">
+                        <label>Lines:</label>
+                        <button class="btn-small" id="lines-minus">-</button>
+                        <span class="value" id="lines-value">50</span>
+                        <button class="btn-small" id="lines-plus">+</button>
+                        <button class="btn-small" id="lines-max">MAX</button>
+                    </div>
+                    <div class="control-group">
+                        <label>Bet Per Line:</label>
+                        <button class="btn-small" id="bet-minus">-</button>
+                        <span class="value" id="bet-value">$0.01</span>
+                        <button class="btn-small" id="bet-plus">+</button>
+                    </div>
+                    <div class="control-group total-bet">
+                        <label>Total Bet:</label>
+                        <span class="value" id="total-bet">$0.50</span>
+                    </div>
+                </div>
+
+                <button class="spin-button" id="spin-button">
+                    <span class="spin-text">SPIN</span>
+                </button>
+
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-label">Last Win:</span>
+                        <span class="stat-value" id="last-win">$0.00</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Total Won:</span>
+                        <span class="stat-value" id="total-won">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paytable button -->
+        <button class="paytable-button" id="paytable-button">💎 Paytable</button>
+
+        <!-- Debug menu toggle -->
+        <button class="debug-toggle" id="debug-toggle">🔧</button>
+
+        <!-- Debug menu -->
+        <div class="debug-menu" id="debug-menu">
+            <h3>Debug Menu</h3>
+            <div class="debug-controls">
+                <button class="debug-btn" id="debug-add-balance">Add $1000</button>
+                <button class="debug-btn" id="debug-trigger-bonus">Trigger Bonus</button>
+                <button class="debug-btn" id="debug-force-win">Force Big Win</button>
+                <button class="debug-btn" id="debug-force-buffalos">Force 5 Buffalos</button>
+                <button class="debug-btn" id="debug-reset">Reset Game</button>
+                <div class="debug-info">
+                    <label>Next Spin Result:</label>
+                    <select id="debug-next-spin">
+                        <option value="normal">Normal</option>
+                        <option value="bonus">Bonus Round</option>
+                        <option value="big-win">Big Win</option>
+                        <option value="buffalo-line">Buffalo Line</option>
+                        <option value="scatter-win">Scatter Win</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paytable modal -->
+        <div class="modal" id="paytable-modal">
+            <div class="modal-content">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <h2>Paytable</h2>
+                <div class="paytable-grid">
+                    <div class="paytable-item">
+                        <span class="symbol-display">🦬 🦬 🦬 🦬 🦬</span>
+                        <span class="payout">5000x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">🦬 🦬 🦬 🦬</span>
+                        <span class="payout">500x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">🦬 🦬 🦬</span>
+                        <span class="payout">100x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">💎 💎 💎 💎 💎</span>
+                        <span class="payout">1000x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">💎 💎 💎 💎</span>
+                        <span class="payout">200x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">💎 💎 💎</span>
+                        <span class="payout">50x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">👑 👑 👑 👑 👑</span>
+                        <span class="payout">750x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">🔔 🔔 🔔 🔔 🔔</span>
+                        <span class="payout">500x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">🍀 🍀 🍀 🍀 🍀</span>
+                        <span class="payout">400x</span>
+                    </div>
+                    <div class="paytable-item">
+                        <span class="symbol-display">⭐ ⭐ ⭐ ⭐ ⭐</span>
+                        <span class="payout">300x</span>
+                    </div>
+                    <div class="paytable-item special">
+                        <span class="symbol-display">🎰 🎰 🎰</span>
+                        <span class="payout">BONUS ROUND!</span>
+                    </div>
+                    <div class="paytable-item special">
+                        <span class="symbol-display">🎰 = Scatter</span>
+                        <span class="payout">3+ triggers Free Spins</span>
+                    </div>
+                </div>
+                <div class="paytable-info">
+                    <p><strong>Free Spins:</strong> 3+ Scatter symbols trigger 10 free spins with 2x multiplier!</p>
+                    <p><strong>Buffalo:</strong> Wild symbol, substitutes for all except Scatter</p>
+                    <p><strong>Max Lines:</strong> Up to 2000 paylines available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
